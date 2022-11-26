@@ -15,10 +15,3 @@ def bbsort(arr:List[int]):
 
     return seq;
 
-
-if __name__ == "__main__":
-    arr = np.random.randint(0, 10, 10).tolist();
-    seq = bbsort(arr);
-
-    for i in seq:
-        print(i);
