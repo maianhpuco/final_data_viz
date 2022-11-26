@@ -14,11 +14,11 @@ def animate_sort(n_elem:int, seq):
     fig, ax = plt.subplots();
 
     X = range(n_elem);
-    bar = ax.bar(X, seq[0]);
+    bar = ax.bar(X, seq[1]);
 
     def init():
         # heights = np.random.uniform(0, 1, 10);
-        heights = seq[0];
+        heights = seq[1];
         for rect, height in zip(bar, heights):
             rect.set_height(height);
 
