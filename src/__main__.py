@@ -1,8 +1,8 @@
 import streamlit as st
 import streamlit.components.v1 as components
-from sort_animation import animate_sort;
+from sort_animation import animate_sort, animate_sort_v2
 import numpy as np
-from sort import generate_result
+# from sort import generate_result
 
 
 st.set_page_config(layout="wide");
@@ -18,23 +18,27 @@ if __name__ == "__main__":
         with lcol:
             # Number of element
             n_elem = st.slider("Number of element", 
-                    min_value = 5,
-                    max_value = 50,
+                    min_value = 10,
+                    max_value = 100,
                     step = 1)
 
             # Inital value
-            init_val = np.random.randint(0, n_elem, n_elem);
+            init_val = np.random.randint(1, n_elem+1, n_elem);
             init_val = init_val.tolist();
             init_val = [str(x) for x in init_val]
             init_val = " ".join(init_val);
-            arr = st.text_area("Input array to be sort", value=init_val);
+            arr = st.text_area("Array to be sort", value=init_val);
             arr = [float(num) for num in arr.strip().split(" ")];
 
             algo = st.selectbox("Sorting algorithm", 
                     ("QUICK_SORT", "BUBBLE_SORT"));
-        
-        seq = generate_result(arr, algo);
-        anim = animate_sort(len(seq[0]), seq);
+
+            algo = "BUBBLE_SORT";
+
+            if algo == "BUBBLE_SORT":
+                from sort_v2 import bbsort;
+                seq = bbsort(arr);
+                anim = animate_sort_v2(seq);
 
 
 
