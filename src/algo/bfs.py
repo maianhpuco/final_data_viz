@@ -2,6 +2,7 @@ import queue
 import matplotlib.pyplot as plt 
 from collections import defaultdict 
 from queue import PriorityQueue, Queue
+from matplotlib.animation import FuncAnimation  
 
 def getHeuristics():
     ''' read heuristics.txt (cites, heuristics_distance)file'''
@@ -98,7 +99,10 @@ def Astar(startNode, heu, graph, goalNode):
 
     return path, totalDist
 
-def drawMap(city, gbfs, astar, graph):
+
+fig, ax = plt.subplots(); 
+
+def drawMap(city, gbfs, graph):
     for i, j in city.items():
         plt.plot(j[0], j[1], 'ro')
         plt.annotate(i, (j[0] + 5, j[1]))
@@ -109,26 +113,21 @@ def drawMap(city, gbfs, astar, graph):
             n = city[k] 
             print(n)
             plt.plot(j[0], n[0], [j[1], n[1]], 'gray')
+        
     for i in range(len(gbfs)):
         try:
             first = city[gbfs[i]]
             second = city[gbfs[i+1]]
-
             plt.plot([first[0], second[0]], [first[1], second[1]], "green")
+            
         except:
             continue
-    for i in range(len(astar)):
-        try: 
-            first  = city[astar[i]]
-            second = city[astar[i+1]]
 
-            plt.plot([first[0], second[0]], [first[1], second[1]], "blue")
-        except:
-            continue
-    plt.errorbar(1, 1, label='GBFS', color='green')
-    plt.errorbar(1, 1, label ='ASTAR', color='blue')
-    plt.legend(loc='upper right')
-    plt.show() 
+    # plt.errorbar(1, 1, label='GBFS', color='green')
+    # plt.legend(loc='upper right')
+    # plt.show() 
+
+
 
 if __name__=='__main__':
     #BUILD GRAPH AND HEURISTICS 
@@ -138,11 +137,7 @@ if __name__=='__main__':
     # FIND PATH WITH GBFS AND ASTAR: 
     gbfs_path, dist = gbfs('Arad', heuristics, graph, 'Hirsova')
     print('GBFS PATH: ', gbfs_path)
-    print('GBFS Distance: ')
-    astar_path, dist = Astar('Arad', heuristics, graph, 'Hirsova')
-    print('A STAR PATH: ', astar_path)
-    print('A ASTAR DISTANCE: ', dist)
-    
+    drawMap(city, gbfs_path, graph)
 
-    drawMap(city, gbfs_path, astar_path, graph)
+    plt.show()
 
