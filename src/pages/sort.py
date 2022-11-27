@@ -16,7 +16,7 @@ arr = None;
 with lcol:
     n_elem = st.number_input("Number of element", 
             min_value = 10,
-            max_value = 40,
+            max_value = 100,
             step = 1)
 
     algo = st.selectbox("Algorithm",
@@ -24,11 +24,9 @@ with lcol:
 
     if n_elem:
         # Generate random array with n elements
-        arr = np.random.randint(1, n_elem + 1, n_elem);
+        arr = np.random.randint(1, 100, n_elem);
         arr_str = " ".join([str(x) for x in arr]);
-        st.text_area(label="Array to be sorted",
-                value = arr_str,
-                disabled = True)
+        st.markdown(f"Array to be sorted `{arr_str}`");
 
     
 with rcol:
@@ -36,6 +34,14 @@ with rcol:
         if algo == "BUBBLE SORT":
             from sort_v2 import bbsort;
             seq = bbsort(arr);
+            anim = animate_sort_v2(seq);
+        
+            components.html(anim.to_jshtml(), height=600)
+        
+        if algo == "QUICK SORT":
+            from sort_v2 import quick_sort;
+            seq = [];
+            quick_sort(seq, arr, 0, n_elem - 1);
             anim = animate_sort_v2(seq);
         
             components.html(anim.to_jshtml(), height=600)
