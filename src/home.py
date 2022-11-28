@@ -21,3 +21,5 @@ st.markdown("""
 | Thien Pham | 21C29017 |
 | Do Thanh Tu | 21C29023 |
 """);
+
+st.balloons()
