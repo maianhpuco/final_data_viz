@@ -26,8 +26,8 @@ def animate_search(graph, start, end):
             iterations = 100);
 
     def hist2txt(hist):
-        return f"""+ visited : {hist["visited"]}
-+ frontier : {hist["frontier"]}
+        return f"""+ visited : ...{hist["visited"][-5:]}
++ frontier : ...{hist["frontier"][-5:]}
 + current : {hist["current_node"]}"""
 
 
