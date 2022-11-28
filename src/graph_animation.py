@@ -26,8 +26,18 @@ def animate_search(graph, start, end):
             iterations = 100);
 
     def hist2txt(hist):
-        return f"""+ visited : ...{hist["visited"][-5:]}
-+ frontier : ...{hist["frontier"][-5:]}
+        if len(hist["visited"]) > 5:
+            vmsg = f"...{', '.join([str(x) for x in hist['visited'][-5:]])}"
+        else:
+            vmsg = f"{', '.join([str(x) for x in hist['visited']])}"
+        
+        if len(hist["frontier"]) > 5:
+            fmsg = f"...{', '.join([str(x) for x in hist['frontier'][-5:]])}"
+        else:
+            fmsg = f"{', '.join([str(x) for x in hist['frontier']])}"
+        
+        return f"""+ visited : {vmsg}
++ frontier : {fmsg}
 + current : {hist["current_node"]}"""
 
 

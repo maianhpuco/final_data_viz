@@ -49,7 +49,7 @@ def DFS(graph, start, end, history):
             break;
 
         # pop a elem from queue frontier
-        current_node = frontier.pop(-1);
+        current_node = frontier.pop();
 
         if current_node == end:
             path_found = True;
