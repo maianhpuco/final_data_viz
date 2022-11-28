@@ -5,6 +5,7 @@ import streamlit.components.v1 as components
 import networkx as nx
 import matplotlib.pyplot as plt
 from graph import *
+from graph_animation import draw_graph
 
 st.set_page_config(
         page_title = "Graph",
@@ -14,12 +15,23 @@ st.sidebar.markdown("Graph (DFS/BFS)");
 
 
 lcol, rcol = st.columns(2);
-arr = None;
+
+path = None;
+
+# Graph config
+with lcol:
+    G = generate_random_graph(50, .25); 
+    G_lists = nx.to_dict_of_lists(G);
+    
+    # Run DFS
+    hist = [];
+    path_found, path = DFS(G, 1, 24, hist);
+
+    # Plotting shit
+    fig, ax = draw_graph(G)
+
+    st.pyplot(fig)
 
 with rcol:
-    st.markdown('Zachary´s Karate Club Graph')
-    G = generate_random_graph(25, .25); 
-    fig, ax = plt.subplots()
-    pos = nx.kamada_kawai_layout(G)
-    nx.draw(G,pos, with_labels=True)
-    st.pyplot(fig)
+    if path is not None:
+        st.markdown(path);
