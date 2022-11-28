@@ -19,8 +19,8 @@ G = None;
 # Graph config
 with lcol:
     n_nodes = st.number_input("Node", 
-            min_value = 10,
-            max_value = 100,
+            min_value = 20,
+            max_value = 50,
             step = 1)
 
     p = st.slider("Graph density",

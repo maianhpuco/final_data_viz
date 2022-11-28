@@ -25,6 +25,11 @@ def animate_search(graph, start, end):
             seed= 0,
             iterations = 100);
 
+    def hist2txt(hist):
+        return f"""+ visited : {hist["visited"]}
++ frontier : {hist["frontier"]}
++ current : {hist["current_node"]}"""
+
 
     def update(i):
         if i < len(history):
@@ -39,6 +44,11 @@ def animate_search(graph, start, end):
                     visited = hist["visited"],
                     frontier = hist["frontier"],
                     current_node = hist["current_node"]
+                    )
+            ax.text(
+                    0, 0, hist2txt(hist),
+                    horizontalalignment='left',
+                    verticalalignment='center',
                     )
         else:
             i = i - len(history);
