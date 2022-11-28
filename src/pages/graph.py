@@ -16,22 +16,27 @@ st.sidebar.markdown("Graph (DFS/BFS)");
 
 lcol, rcol = st.columns(2);
 
-path = None;
-
+G = None;
 # Graph config
 with lcol:
-    G = generate_random_graph(50, .25); 
+    n_nodes = st.number_input("Node", 
+            min_value = 10,
+            max_value = 100,
+            step = 1)
+
+    p = st.slider("Graph density",
+            min_value = .25,
+            max_value = 1.00,
+            step = 0.01)
+
+    G = generate_random_graph(n_nodes, p); 
     G_lists = nx.to_dict_of_lists(G);
+    st.markdown(f"""```json
+    {G_lists}```""")
     
-    # Run DFS
-    hist = [];
-    path_found, path = DFS(G, 1, 24, hist);
-
-    # Plotting shit
-    fig, ax = draw_graph(G)
-
-    st.pyplot(fig)
 
 with rcol:
-    if path is not None:
-        st.markdown(path);
+    if G is not None:
+        from graph_animation import animate_search;
+        anim = animate_search(G, 0, n_nodes);
+        components.html(anim.to_jshtml(), height=600)

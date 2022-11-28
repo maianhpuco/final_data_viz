@@ -58,18 +58,16 @@ def DFS(graph, start, end, history):
         for node in graph[current_node]:
             if node not in visited:
                 frontier.append(node);
-                
                 parents[node]=current_node;
 
                 # Construct history object to visualize
                 _hist = {
                     "visited": visited.copy(),
                     "frontier": frontier.copy(),
-                    # "parents" : parents.copy(),
                     "current_node": current_node,
                     "new_frontier": node
                 }
-                visited.append(node);
+                # visited.append(node);
                 history.append(_hist);
     #construct_path;
     path = [];

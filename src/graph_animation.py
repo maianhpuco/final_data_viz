@@ -3,14 +3,32 @@ from matplotlib import pyplot as plt
 import numpy as np
 from graph import DFS
 import networkx as nx
+from matplotlib.animation import FuncAnimation 
 
 def animate_search(graph, start, end):
     history = [];
     path_found, path = DFS(graph, start, end, history);
+    
+    fig, ax = plt.subplots();
 
 
-def draw_graph(graph):
-    fig, ax = plt.subplots()
+    def update(i):
+        hist = history[i];
+        # print(hist);
+
+
+    anim = FuncAnimation(fig, update,
+            init_func = lambda: draw_graph(graph, fig, ax),
+            frames = len(history),
+            interval = 100)
+
+    return anim
+
+    
+
+
+
+def draw_graph(graph, fig, ax):
     # layout:
     pos = nx.spring_layout(graph,
             seed= 0,
@@ -42,4 +60,3 @@ def draw_graph(graph):
             font_color = "black",
             pos = pos)
 
-    return fig, ax
