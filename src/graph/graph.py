@@ -11,13 +11,13 @@ class Graph(nx.Graph):
 
     def get_number_of_node(self):
         return len(self.nodes)
-
+    
     def create_random_graph(self, n, p):
         new_graph = nx.gnp_random_graph(n, p, seed=123)
         self.add_nodes_from(new_graph.nodes(data=True))
         self.add_edges_from(new_graph.edges(data=True))
-        layout_pos = nx.random_layout(self)
-
+        layout_pos = nx.spring_layout(self, seed=123)
+        
         nx.set_node_attributes(self, layout_pos, "pos")
         nx.set_node_attributes(self, dict([(i, 0 ) for i in range(n)]), "cost_so_far")
         nx.set_node_attributes(self, [], "parent")
