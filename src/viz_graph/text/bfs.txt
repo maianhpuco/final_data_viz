@@ -1,0 +1,20 @@
+def bfs(graph, start, end):
+  q = queue() 
+  visited = set()
+  visited.add(start)
+  q.enqueue(end) 
+
+  while (len(q)>0):
+    node = q.deque()
+    if node==end:
+      return node
+
+    for neighbor in graph[node]: 
+      if not visited[neighbor]:
+        visited.add(neighbor)
+        q.enqueue(neighbor)
+        neighbor.parent=node 
+
+  return -1 
+
+

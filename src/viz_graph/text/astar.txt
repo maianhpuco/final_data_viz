@@ -1,0 +1,22 @@
+def astar(graph, start, end):
+  pq  = PrirityQueue() 
+  visited = set()
+  visited.add(start)
+  q.enqueue((0, start)) 
+
+  while (len(q)>0):
+    cost, node = pq.deque()
+    if node==end:
+      return node
+
+    for neighbor in graph[node]: 
+      cost=cost_so_far(node)+distance(neighbor, node)
+      if not visited[neighbor] or  cost<cost_so_far(neighbor):
+        visited.add(neighbor)
+        neighbor.parent=node 
+        priority_score = heuristics(neighbor)+cost(node)+distance(neighbor, node) 
+        pq.enqueue((priority_score, neighbor))
+
+  return -1 
+
+
