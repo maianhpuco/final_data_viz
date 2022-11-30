@@ -1,7 +1,7 @@
 i = 0
-while i < n - 1:
+while i < n:
   j = i + 1
-  while j < n - 1:
+  while j < n:
     if a[i] > a[j]:
       swap(a[i], a[j])
     j += 1

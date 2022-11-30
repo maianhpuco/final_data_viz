@@ -71,16 +71,14 @@ class BBSVariableFrame(QFrame):
         self._table_data_to_false()
         self.table_data["i"] = (self.data["i"], True)
         self.table_data["n"] = (self.data["n"], True)
-        self.table_data["n - 1"] = (self.data["n"] - 1, True)
-        self.table_data["i < n - 1"] = (self.data["i"] < self.data["n"] - 1, True)
+        self.table_data["i < n"] = (self.data["i"] < self.data["n"], True)
         self._show()
         
     def compare_jn(self):
         self._table_data_to_false()
         self.table_data["j"] = (self.data["j"], True)
         self.table_data["n"] = (self.data["n"], True)
-        self.table_data["n - 1"] = (self.data["n"] - 1, True)
-        self.table_data["j < n - 1"] = (self.data["j"] < self.data["n"] - 1, True)
+        self.table_data["j < n"] = (self.data["j"] < self.data["n"], True)
         self._show()
     
     def compare_aij(self):

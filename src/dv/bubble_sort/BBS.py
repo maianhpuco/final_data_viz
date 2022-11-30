@@ -11,7 +11,7 @@ class BBS:
     def __init__(self):
         self.app = QApplication(sys.argv)
         self.data = {
-            "n": 20,
+            "n": 5,
             "arr": list(),
             "i": 0,
             "j": 1,
@@ -137,7 +137,7 @@ class BBS:
         elif self.data["cur_loc"] == 1:
             # while i < n - 1:
             def _tmp():
-                if self.data["i"] < self.data["n"] - 1:
+                if self.data["i"] < self.data["n"]:
                     self.data["cur_loc"] = 2
                 else:
                     self.data["cur_loc"] = 8 # END
@@ -155,7 +155,7 @@ class BBS:
         elif self.data["cur_loc"] == 3:
             #   while j < n - 1:
             def _tmp():
-                if self.data["j"] < self.data["n"] - 1:
+                if self.data["j"] < self.data["n"]:
                     self.data["cur_loc"] = 4
                 else:
                     self.data["cur_loc"] = 7
